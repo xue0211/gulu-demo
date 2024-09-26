@@ -21,6 +21,6 @@
   },
   "homepage": "https://github.com/xue0211/gulu-demo#readme",
   "dependencies": {
-    "vue": "^3.5.8"
+    "vue": "^2.5.16"
   }
 }
