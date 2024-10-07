@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import Button from './Button.vue';
+import Button from './button.vue';
 
 Vue.component('g-button', Button);
 
