@@ -32,29 +32,14 @@ export default {
   0%{ transform: rotate(0deg); }
   100%{ transform: rotate(360deg); }
 }
-.g-button {
-  font-size: var(--font-size);
-  height: var(--button-height);
-  padding: 0 1em;
-  border-radius: var(--border-radius);
-  border: 1px solid var(--border-color);
+.g-button { font-size: var(--font-size); height: var(--button-height); padding: 0 1em;
+  border-radius: var(--border-radius); border: 1px solid var(--border-color);
   background: var(--button-bg);
-  display: inline-flex;
-  vertical-align: middle;
-  justify-content: center;
-  align-items: center;
-
-  &:hover {
-    border-color: var(--border-hover-color);
-  }
-
-  &:active {
-    background-color: var(--button-active-bg);
-  }
-
-  &:focus {
-    outline: none;
-  }
+  display: inline-flex; vertical-align: middle;
+  justify-content: center;align-items: center;
+  &:hover { border-color: var(--border-hover-color);}
+  &:active { background-color: var(--button-active-bg);}
+  &:focus { outline: none;}
   > .content {order: 2;}
   > .icon {order: 1; margin-right: .1em;}
   &.icon-right {
