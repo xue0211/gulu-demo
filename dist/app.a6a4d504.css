@@ -114,10 +114,16 @@
 .row[data-v-7e2e3b] {
   display: flex;
 }
-
-.col[data-v-bb89a9] {
-  width: 50%;
+.row.align-left[data-v-7e2e3b] {
+  justify-content: flex-start;
 }
+.row.align-right[data-v-7e2e3b] {
+  justify-content: flex-end;
+}
+.row.align-center[data-v-7e2e3b] {
+  justify-content: center;
+}
+
 .col.col-1[data-v-bb89a9] {
   width: 4.1666666667%;
 }
