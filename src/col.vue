@@ -1,9 +1,6 @@
 <template>
-  <div class="col" :class="[span && `col-${span}`,offset && `offset-${offset}`] "
-  :style="{paddingLeft: gutter/2+'px', paddingRight: gutter/2+'px'}">
-    <div style="border: 1px solid green; height: 100px">
-      <slot></slot>
-    </div>
+  <div class="col" :class="colClass" :style="colStyle">
+    <slot></slot>
   </div>
 </template>
 <script>
@@ -17,16 +14,25 @@ export default {
       type: [Number, String],
     }
   },
-  data(){
+  data() {
     return {
-      gutter: 0
+      gutter: 0,
     }
   },
-  created() {
-    console.log('col created')
-  },
-  mounted() {
-    console.log('col mounted')
+  computed: {
+    colClass() {
+      let {span, offset} = this
+      return [
+        span && `col-${span}`,
+        offset && `offset-${offset}`
+      ]
+    },
+    colStyle() {
+      return {
+        paddingLeft: this.gutter / 2 + 'px',
+        paddingRight: this.gutter / 2 + 'px'
+      }
+    }
   }
 }
 </script>
@@ -37,7 +43,7 @@ export default {
   $class-prefix: col-;
   @for $n from 1 through 24 {
     &.#{$class-prefix}#{$n} {
-     width: ($n / 24) * 100%;
+      width: ($n / 24) * 100%;
     }
   }
   $class-prefix: offset-;
