@@ -29,12 +29,36 @@
         body {
             font-size: var(--font-size);
         }</style>
-    <style>.box{
+    <style>.box {
             margin: 20px;
         }</style>
 <link rel="stylesheet" href="/app.a6a4d504.css"></head>
 <body>
 <div id="app">
+    <g-row>
+        <g-col>1</g-col>
+        <g-col>2</g-col>
+    </g-row>
+    <g-row>
+        <g-col>1</g-col>
+        <g-col>2</g-col>
+        <g-col>3</g-col>
+    </g-row>
+    <g-row>
+        <g-col>1</g-col>
+        <g-col>2</g-col>
+        <g-col>3</g-col>
+        <g-col>4</g-col>
+    </g-row>
+    <g-row>
+        <g-col span="2">1</g-col>
+        <g-col span="22">11</g-col>
+    </g-row>
+    <g-row>
+        <g-col span="4">1</g-col>
+        <g-col span="20">11</g-col>
+    </g-row>
+    <hr>
     <div class="box">
         <g-input value="张三" disabled=""></g-input>
         <g-input value="李四" readonly=""></g-input>
@@ -42,7 +66,7 @@
     </div>
     <div class="box">
         <g-input v-model="message"></g-input>
-        <p>{{message}}</p>
+        <p>{{ message }}</p>
         <button @click="message+=1">+1</button>
     </div>
     <div class="box">
