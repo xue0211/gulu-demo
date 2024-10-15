@@ -858,10 +858,24 @@
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  border: 1px solid red;
 }
 .layout.hasSider[data-v-3a78bb] {
   flex-direction: row;
+}
+
+.sider[data-v-fd6daf] {
+  position: relative;
+}
+.sider > button[data-v-fd6daf] {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.slide-enter-active[data-v-fd6daf], .slide-leave-active[data-v-fd6daf] {
+  transition: all 0.5s;
+}
+.slide-enter[data-v-fd6daf], .slide-leave-to[data-v-fd6daf] {
+  margin-left: -200px;
 }
 
 .content[data-v-c21954] {
