@@ -36,10 +36,12 @@ new Vue({
         message: 'hi',
     },
     created() {
+       this.$toast('很多文字',{
+           enableHtml: true
+       })
     },
     methods: {
        showToast(){
-           this.$toast('我是 message')
        }
     }
 })
