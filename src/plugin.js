@@ -9,7 +9,14 @@ export default {
             if(currentToast) {
                 currentToast.close()
             }
-           currentToast = createToast({message,Vue, propsData:toastOptions})
+           currentToast = createToast({
+               message,
+               Vue,
+               propsData:toastOptions,
+               onClose: () => {
+                   currentToast = null
+               }
+           })
         }
     }
 }
@@ -29,11 +36,12 @@ export default {
 
 
  /*helpers*/
-function createToast({Vue, propsData, message}){
+function createToast({Vue, propsData, message, onClose}){
     let Constructor = Vue.extend(Toast)
     let toast = new Constructor({propsData})
     toast.$slots.default = [message]
     toast.$mount()
+    this.$on('close', onClose)
     document.body.appendChild(toast.$el)
     return toast
 }

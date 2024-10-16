@@ -10899,6 +10899,7 @@ var _default2 = exports.default = {
     },
     close: function close() {
       this.$el.remove();
+      this.$emit('close');
       this.$destroy();
     },
     onClickClose: function onClickClose() {
@@ -11002,7 +11003,10 @@ var _default = exports.default = {
       currentToast = createToast({
         message: message,
         Vue: Vue,
-        propsData: toastOptions
+        propsData: toastOptions,
+        onClose: function onClose() {
+          currentToast = null;
+        }
       });
     };
   }
@@ -11011,13 +11015,15 @@ var _default = exports.default = {
 function createToast(_ref) {
   var Vue = _ref.Vue,
     propsData = _ref.propsData,
-    message = _ref.message;
+    message = _ref.message,
+    onClose = _ref.onClose;
   var Constructor = Vue.extend(_toast.default);
   var toast = new Constructor({
     propsData: propsData
   });
   toast.$slots.default = [message];
   toast.$mount();
+  this.$on('close', onClose);
   document.body.appendChild(toast.$el);
   return toast;
 }
