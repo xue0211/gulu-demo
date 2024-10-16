@@ -36,8 +36,17 @@ new Vue({
         message: 'hi',
     },
     created() {
-       this.$toast('很多文字',{
-           enableHtml: true
+       this.$toast('你的情商需要充值！',{
+           position: 'middle',
+           enableHtml: false,
+           closeButton:{
+               text: '已充值',
+               callback(){
+                   console.log('他说已经充值情商了')
+               }
+           },
+           autoClose: false,
+           autoCloseDelay: 3
        })
     },
     methods: {

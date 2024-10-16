@@ -10273,7 +10273,7 @@ var _default = exports.default = {
     align: {
       type: [String],
       validator: function validator(value) {
-        return ['left', 'center', 'right'].includes(value);
+        return ['left', 'center', 'right'].indexOf(value) >= 0;
       }
     }
   },
@@ -10824,6 +10824,10 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 //
 //
 //
@@ -10859,12 +10863,24 @@ var _default2 = exports.default = {
     enableHtml: {
       type: Boolean,
       default: false
+    },
+    position: {
+      type: String,
+      default: 'top',
+      validator: function validator(value) {
+        return ['top', 'bottom', 'middle'].indexOf(value) >= 0;
+      }
     }
   },
   created: function created() {},
   mounted: function mounted() {
     this.updateStyles();
     this.execAutoClose();
+  },
+  computed: {
+    toastClasses: function toastClasses() {
+      return _defineProperty({}, "position-".concat(this.position), true);
+    }
   },
   methods: {
     updateStyles: function updateStyles() {
@@ -10905,28 +10921,34 @@ var _default2 = exports.default = {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { ref: "wrapper", staticClass: "toast" }, [
-    _c(
-      "div",
-      { staticClass: "message" },
-      [
-        !_vm.enableHtml
-          ? _vm._t("default")
-          : _c("div", {
-              domProps: { innerHTML: _vm._s(_vm.$slots.default[0]) }
-            })
-      ],
-      2
-    ),
-    _vm._v(" "),
-    _c("div", { ref: "line", staticClass: "line" }),
-    _vm._v(" "),
-    _vm.closeButton
-      ? _c("span", { staticClass: "close", on: { click: _vm.onClickClose } }, [
-          _vm._v("\n    " + _vm._s(_vm.closeButton.text) + "\n  ")
-        ])
-      : _vm._e()
-  ])
+  return _c(
+    "div",
+    { ref: "wrapper", staticClass: "toast", class: _vm.toastClasses },
+    [
+      _c(
+        "div",
+        { staticClass: "message" },
+        [
+          !_vm.enableHtml
+            ? _vm._t("default")
+            : _c("div", {
+                domProps: { innerHTML: _vm._s(_vm.$slots.default[0]) }
+              })
+        ],
+        2
+      ),
+      _vm._v(" "),
+      _c("div", { ref: "line", staticClass: "line" }),
+      _vm._v(" "),
+      _vm.closeButton
+        ? _c(
+            "span",
+            { staticClass: "close", on: { click: _vm.onClickClose } },
+            [_vm._v("\n    " + _vm._s(_vm.closeButton.text) + "\n  ")]
+          )
+        : _vm._e()
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -11023,8 +11045,17 @@ new _vue.default({
     message: 'hi'
   },
   created: function created() {
-    this.$toast('很多文字', {
-      enableHtml: true
+    this.$toast('你的情商需要充值！', {
+      position: 'middle',
+      enableHtml: false,
+      closeButton: {
+        text: '已充值',
+        callback: function callback() {
+          console.log('他说已经充值情商了');
+        }
+      },
+      autoClose: false,
+      autoCloseDelay: 3
     });
   },
   methods: {
