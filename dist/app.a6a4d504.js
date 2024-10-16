@@ -10992,19 +10992,35 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 var _toast = _interopRequireDefault(require("./toast"));
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
+var currentToast;
 var _default = exports.default = {
   install: function install(Vue, options) {
     Vue.prototype.$toast = function (message, toastOptions) {
-      var Constructor = Vue.extend(_toast.default);
-      var toast = new Constructor({
+      if (currentToast) {
+        currentToast.close();
+      }
+      currentToast = createToast({
+        message: message,
+        Vue: Vue,
         propsData: toastOptions
       });
-      toast.$slots.default = [message];
-      toast.$mount();
-      document.body.appendChild(toast.$el);
     };
   }
 };
+/*helpers*/
+function createToast(_ref) {
+  var Vue = _ref.Vue,
+    propsData = _ref.propsData,
+    message = _ref.message;
+  var Constructor = Vue.extend(_toast.default);
+  var toast = new Constructor({
+    propsData: propsData
+  });
+  toast.$slots.default = [message];
+  toast.$mount();
+  document.body.appendChild(toast.$el);
+  return toast;
+}
 },{"./toast":"src/toast.vue"}],"src/app.js":[function(require,module,exports) {
 "use strict";
 
@@ -11044,22 +11060,22 @@ new _vue.default({
     loading3: false,
     message: 'hi'
   },
-  created: function created() {
-    this.$toast('你的情商需要充值！', {
-      position: 'middle',
-      enableHtml: false,
-      closeButton: {
-        text: '已充值',
-        callback: function callback() {
-          console.log('他说已经充值情商了');
-        }
-      },
-      autoClose: false,
-      autoCloseDelay: 3
-    });
-  },
+  created: function created() {},
   methods: {
-    showToast: function showToast() {}
+    showToast: function showToast() {
+      this.$toast("\u4F60\u7684\u667A\u5546\u76EE\u524D\u4E3A ".concat(parseInt(Math.random() * 100), "\u3002\u4F60\u7684\u60C5\u5546\u9700\u8981\u5145\u503C\uFF01 "), {
+        position: 'middle',
+        enableHtml: false,
+        closeButton: {
+          text: '已充值',
+          callback: function callback() {
+            console.log('他说已经充值情商了');
+          }
+        },
+        autoClose: false,
+        autoCloseDelay: 3
+      });
+    }
   }
 });
 },{"vue":"node_modules/vue/dist/vue.common.js","./button":"src/button.vue","./icon":"src/icon.vue","./button-group":"src/button-group.vue","./input":"src/input.vue","./row":"src/row.vue","./col":"src/col.vue","./layout":"src/layout.vue","./sider":"src/sider.vue","./content":"src/content.vue","./header":"src/header.vue","./footer":"src/footer.vue","./toast":"src/toast.vue","./plugin":"src/plugin.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
