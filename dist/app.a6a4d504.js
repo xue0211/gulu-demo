@@ -11070,7 +11070,7 @@ new _vue.default({
   methods: {
     showToast: function showToast() {
       this.$toast("\u4F60\u7684\u667A\u5546\u76EE\u524D\u4E3A ".concat(parseInt(Math.random() * 100), "\u3002\u4F60\u7684\u60C5\u5546\u9700\u8981\u5145\u503C\uFF01 "), {
-        position: 'middle',
+        position: 'bottom',
         enableHtml: false,
         closeButton: {
           text: '已充值',
