@@ -10840,6 +10840,8 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
 //
 //
 //
+//
+//
 var _default2 = exports.default = {
   name: 'GuluToast',
   props: {
@@ -10886,7 +10888,7 @@ var _default2 = exports.default = {
     updateStyles: function updateStyles() {
       var _this = this;
       this.$nextTick(function () {
-        _this.$refs.line.style.height = "".concat(_this.$refs.wrapper.getBoundingClientRect().height, "px");
+        _this.$refs.line.style.height = "".concat(_this.$refs.toast.getBoundingClientRect().height, "px");
       });
     },
     execAutoClose: function execAutoClose() {
@@ -10922,10 +10924,8 @@ var _default2 = exports.default = {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { ref: "wrapper", staticClass: "toast", class: _vm.toastClasses },
-    [
+  return _c("div", { staticClass: "wrapper", class: _vm.toastClasses }, [
+    _c("div", { ref: "toast", staticClass: "toast" }, [
       _c(
         "div",
         { staticClass: "message" },
@@ -10948,8 +10948,8 @@ var _default2 = exports.default = {
             [_vm._v("\n    " + _vm._s(_vm.closeButton.text) + "\n  ")]
           )
         : _vm._e()
-    ]
-  )
+    ])
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -11023,7 +11023,7 @@ function createToast(_ref) {
   });
   toast.$slots.default = [message];
   toast.$mount();
-  this.$on('close', onClose);
+  toast.$on('close', onClose);
   document.body.appendChild(toast.$el);
   return toast;
 }
@@ -11068,9 +11068,18 @@ new _vue.default({
   },
   created: function created() {},
   methods: {
-    showToast: function showToast() {
+    showToast1: function showToast1() {
+      this.showToast('top');
+    },
+    showToast2: function showToast2() {
+      this.showToast('middle');
+    },
+    showToast3: function showToast3() {
+      this.showToast('bottom');
+    },
+    showToast: function showToast(position) {
       this.$toast("\u4F60\u7684\u667A\u5546\u76EE\u524D\u4E3A ".concat(parseInt(Math.random() * 100), "\u3002\u4F60\u7684\u60C5\u5546\u9700\u8981\u5145\u503C\uFF01 "), {
-        position: 'bottom',
+        position: position,
         enableHtml: false,
         closeButton: {
           text: '已充值',
