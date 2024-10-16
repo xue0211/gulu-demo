@@ -10846,12 +10846,11 @@ var _default2 = exports.default = {
   name: 'GuluToast',
   props: {
     autoClose: {
-      type: Boolean,
-      default: true
-    },
-    autoCloseDelay: {
-      type: Number,
-      default: 50
+      type: [Boolean, Number],
+      default: 5,
+      validator: function validator(value) {
+        return value === false || typeof value === 'number';
+      }
     },
     closeButton: {
       type: Object,
@@ -10896,7 +10895,7 @@ var _default2 = exports.default = {
       if (this.autoClose) {
         setTimeout(function () {
           _this2.close();
-        }, this.autoCloseDelay * 1000);
+        }, this.autoClose * 1000);
       }
     },
     close: function close() {
@@ -11087,8 +11086,7 @@ new _vue.default({
             console.log('他说已经充值情商了');
           }
         },
-        autoClose: false,
-        autoCloseDelay: 3
+        autoClose: 3
       });
     }
   }
