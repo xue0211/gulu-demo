@@ -11069,9 +11069,9 @@ var _default = exports.default = {
     var _this = this;
     this.$children.forEach(function (vm) {
       if (vm.$options.name === 'GuluTabsHead') {
-        vm.$children.forEach(function (item) {
-          if (item.$options.name === 'GuluTabsItem' && item.name === _this.selected) {
-            _this.eventBus.$emit('update:selected', _this.selected, item);
+        vm.$children.forEach(function (childVm) {
+          if (childVm.$options.name === 'GuluTabsItem' && childVm.name === _this.selected) {
+            _this.eventBus.$emit('update:selected', _this.selected, childVm);
           }
         });
       }
