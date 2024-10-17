@@ -1010,3 +1010,16 @@
 .tabs-pane[data-v-25cf9f] {
   padding: 1em;
 }
+
+.popover[data-v-8e309d] {
+  display: inline-block;
+  vertical-align: top;
+  position: relative;
+}
+.popover .content-wrapper[data-v-8e309d] {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  border: 1px solid red;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+}
