@@ -965,15 +965,29 @@
 .tabs {
 
 }
-.tabs-head {
 
+.tabs-head[data-v-1ee798] {
+  display: flex;
+  height: 40px;
+  justify-content: flex-start;
+  align-items: center;
+  border: 1px solid red;
+}
+.tabs-head > .actions-wrapper[data-v-1ee798] {
+  margin-left: auto;
 }
 .tabs-body {
 
 }
-.tabs-item {
 
+.tabs-item[data-v-f4062e] {
+  flex-shrink: 0;
+  padding: 0 1em;
 }
-.tabs-pane {
+.tabs-item.active[data-v-f4062e] {
+  background: red;
+}
 
+.tabs-pane.active[data-v-25cf9f] {
+  background: red;
 }
