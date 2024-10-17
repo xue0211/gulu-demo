@@ -1002,6 +1002,9 @@
   color: blue;
   font-weight: bold;
 }
+.tabs-item.disabled[data-v-f4062e] {
+  color: grey;
+}
 
 .tabs-pane[data-v-25cf9f] {
   padding: 1em;
