@@ -971,6 +971,7 @@
   height: 40px;
   justify-content: flex-start;
   position: relative;
+  border-bottom: 1px solid #ddd;
 }
 .tabs-head > .line[data-v-1ee798] {
   position: absolute;
@@ -980,6 +981,10 @@
 }
 .tabs-head > .actions-wrapper[data-v-1ee798] {
   margin-left: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1em;
 }
 .tabs-body {
 
@@ -998,6 +1003,6 @@
   font-weight: bold;
 }
 
-.tabs-pane.active[data-v-25cf9f] {
-  background: red;
+.tabs-pane[data-v-25cf9f] {
+  padding: 1em;
 }
