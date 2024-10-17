@@ -1004,6 +1004,7 @@
 }
 .tabs-item.disabled[data-v-f4062e] {
   color: grey;
+  cursor: not-allowed;
 }
 
 .tabs-pane[data-v-25cf9f] {

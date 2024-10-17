@@ -11067,6 +11067,9 @@ var _default = exports.default = {
   },
   mounted: function mounted() {
     var _this = this;
+    if (this.$children.length === 0) {
+      console && console.warn && console.warn('tabs的子组件应该是tabs-head和tabs-body,但你没有写子组件');
+    }
     this.$children.forEach(function (vm) {
       if (vm.$options.name === 'GuluTabsHead') {
         vm.$children.forEach(function (childVm) {
@@ -11319,16 +11322,19 @@ var _default = exports.default = {
   },
   created: function created() {
     var _this = this;
-    this.eventBus.$on('update:selected', function (name) {
-      _this.active = name === _this.name;
-    });
+    if (this.eventBus) {
+      this.eventBus.$on('update:selected', function (name) {
+        _this.active = name === _this.name;
+      });
+    }
   },
   methods: {
     onClick: function onClick() {
       if (this.disabled) {
         return;
       }
-      this.eventBus.$emit('update:selected', this.name, this);
+      this.eventBus && this.eventBus.$emit('update:selected', this.name, this);
+      this.$emit('click', this);
     }
   }
 };
@@ -11349,6 +11355,7 @@ var _default = exports.default = {
     {
       staticClass: "tabs-item",
       class: _vm.classes,
+      attrs: { "data-name": _vm.name },
       on: { click: _vm.onClick }
     },
     [_vm._t("default")],
