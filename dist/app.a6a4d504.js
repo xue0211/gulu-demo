@@ -11066,7 +11066,7 @@ var _default = exports.default = {
     };
   },
   mounted: function mounted() {
-    this.$emit('update:selected', this.selected);
+    this.eventBus.$emit('update:selected', this.selected);
   }
 };
         var $7617cd = exports.default || module.exports;
@@ -11499,6 +11499,10 @@ new _vue.default({
   },
   created: function created() {},
   methods: {
+    yyy: function yyy(data) {
+      console.log('yyy');
+      console.log(data);
+    },
     showToast1: function showToast1() {
       this.showToast('top');
     },

@@ -31,7 +31,7 @@ export default {
     }
   },
   mounted() {
-     this.$emit('update:selected',this.selected)
+     this.eventBus.$emit('update:selected',this.selected)
   }
 }
 </script>
