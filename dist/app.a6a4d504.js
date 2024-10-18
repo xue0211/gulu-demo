@@ -11518,6 +11518,22 @@ exports.default = void 0;
 //
 var _default = exports.default = {
   name: "GuluPopover",
+  props: {
+    position: {
+      type: String,
+      default: 'top',
+      validator: function validator(value) {
+        return ['top', 'bottom', 'left', 'right'].indexOf(value) >= 0;
+      }
+    },
+    trigger: {
+      type: String,
+      default: 'click',
+      validator: function validator(value) {
+        return ['click', 'hover'].indexOf(value) >= 0;
+      }
+    }
+  },
   data: function data() {
     return {
       visible: false
@@ -11552,22 +11568,6 @@ var _default = exports.default = {
         return 'click';
       } else {
         return 'mouseleave';
-      }
-    }
-  },
-  props: {
-    position: {
-      type: String,
-      default: 'top',
-      validator: function validator(value) {
-        return ['top', 'bottom', 'left', 'right'].indexOf(value) >= 0;
-      }
-    },
-    trigger: {
-      type: String,
-      default: 'click',
-      validator: function validator(value) {
-        return ['click', 'hover'].indexOf(value) >= 0;
       }
     }
   },
@@ -11660,7 +11660,7 @@ var _default = exports.default = {
             class:
               ((_obj = {}), (_obj["position-" + _vm.position] = true), _obj)
           },
-          [_vm._t("content")],
+          [_vm._t("content", null, { close: _vm.close })],
           2
         )
       : _vm._e(),
