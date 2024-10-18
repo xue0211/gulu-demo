@@ -11538,6 +11538,9 @@ var _default = exports.default = {
       if (this.$refs.popover && (this.$refs.popover === e.target || this.$refs.popover.contains(e.target))) {
         return;
       }
+      if (this.$refs.contentWrapper && (this.$refs.contentWrapper.contains(e.target) || this.$refs.contentWrapper.contains(e.target))) {
+        return;
+      }
       this.close();
     },
     open: function open() {
@@ -11588,7 +11591,12 @@ var _default = exports.default = {
           )
         : _vm._e(),
       _vm._v(" "),
-      _c("span", { ref: "triggerWrapper" }, [_vm._t("default")], 2)
+      _c(
+        "span",
+        { ref: "triggerWrapper", staticStyle: { display: "inline-block" } },
+        [_vm._t("default")],
+        2
+      )
     ]
   )
 }
@@ -11675,9 +11683,6 @@ new _vue.default({
   },
   created: function created() {},
   methods: {
-    yyy: function yyy() {
-      console.log('yyy');
-    },
     showToast1: function showToast1() {
       this.showToast('top');
     },
@@ -11727,7 +11732,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52060" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49239" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
