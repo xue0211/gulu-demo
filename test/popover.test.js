@@ -34,5 +34,8 @@ describe('Popover', () => {
 
         })
     })
+    xit('可以设置 trigger', (done) => {
+
+    })
 
 })
