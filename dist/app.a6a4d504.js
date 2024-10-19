@@ -11726,6 +11726,9 @@ var _default = exports.default = {
     single: {
       type: Boolean,
       default: false
+    },
+    selected: {
+      type: String
     }
   },
   data: function data() {
@@ -11734,11 +11737,12 @@ var _default = exports.default = {
     };
   },
   provide: function provide() {
-    if (this.single) {
-      return {
-        eventBus: this.eventBus
-      };
-    }
+    return {
+      eventBus: this.eventBus
+    };
+  },
+  mounted: function mounted() {
+    this.eventBus.$emit('update:selected', this.selected);
   }
 };
         var $b6fe9d = exports.default || module.exports;
@@ -11811,6 +11815,10 @@ var _default = exports.default = {
     title: {
       type: String,
       required: true
+    },
+    name: {
+      type: String,
+      required: true
     }
   },
   data: function data() {
@@ -11821,9 +11829,11 @@ var _default = exports.default = {
   inject: ['eventBus'],
   mounted: function mounted() {
     var _this = this;
-    this.eventBus && this.eventBus.$on('update:selected', function (vm) {
-      if (vm !== _this) {
+    this.eventBus && this.eventBus.$on('update:selected', function (name) {
+      if (name !== _this.name) {
         _this.close();
+      } else {
+        _this.show();
       }
     });
   },
@@ -11832,12 +11842,14 @@ var _default = exports.default = {
       if (this.open) {
         this.open = false;
       } else {
-        this.open = true;
-        this.eventBus && this.eventBus.$emit('update:selected', this);
+        this.eventBus && this.eventBus.$emit('update:selected', this.name);
       }
     },
     close: function close() {
       this.open = false;
+    },
+    show: function show() {
+      this.open = true;
     }
   }
 };
