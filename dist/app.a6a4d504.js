@@ -11728,12 +11728,13 @@ var _default = exports.default = {
       default: false
     },
     selected: {
-      type: String
+      type: Array
     }
   },
   data: function data() {
     return {
-      eventBus: new _vue.default()
+      eventBus: new _vue.default(),
+      selectedArray: []
     };
   },
   provide: function provide() {
@@ -11742,7 +11743,25 @@ var _default = exports.default = {
     };
   },
   mounted: function mounted() {
+    var _this = this;
     this.eventBus.$emit('update:selected', this.selected);
+    this.eventBus.$on('update:addSelected', function (name) {
+      var selectedCopy = JSON.parse(JSON.stringify(_this.selected));
+      if (_this.single) {
+        selectedCopy = name;
+      } else {
+        selectedCopy.push(name);
+      }
+      _this.eventBus.$emit('update:selected', selectedCopy);
+      _this.$emit('update:selected', selectedCopy);
+    });
+    this.eventBus.$on('update:removeSelected', function (name) {
+      var selectedCopy = JSON.parse(JSON.stringify(_this.selected));
+      var index = selectedCopy.indexOf(name);
+      selectedCopy.splice(index, 1);
+      _this.eventBus.$emit('update:selected', selectedCopy);
+      _this.$emit('update:selected', selectedCopy);
+    });
   }
 };
         var $b6fe9d = exports.default || module.exports;
@@ -11829,27 +11848,21 @@ var _default = exports.default = {
   inject: ['eventBus'],
   mounted: function mounted() {
     var _this = this;
-    this.eventBus && this.eventBus.$on('update:selected', function (name) {
-      if (name !== _this.name) {
-        _this.close();
+    this.eventBus && this.eventBus.$on('update:selected', function (names) {
+      if (names.indexOf(_this.name) >= 0) {
+        _this.open = true;
       } else {
-        _this.show();
+        _this.open = false;
       }
     });
   },
   methods: {
     toggle: function toggle() {
       if (this.open) {
-        this.open = false;
+        this.eventBus && this.eventBus.$emit('update:removeSelected', this.name);
       } else {
-        this.eventBus && this.eventBus.$emit('update:selected', this.name);
+        this.eventBus && this.eventBus.$emit('update:addSelected', this.name);
       }
-    },
-    close: function close() {
-      this.open = false;
-    },
-    show: function show() {
-      this.open = true;
     }
   }
 };
@@ -11867,7 +11880,7 @@ var _default = exports.default = {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "collapseItem" }, [
     _c("div", { staticClass: "title", on: { click: _vm.toggle } }, [
-      _vm._v("\n    " + _vm._s(_vm.title) + "\n  ")
+      _vm._v("\n   " + _vm._s(_vm.title) + "\n  ")
     ]),
     _vm._v(" "),
     _vm.open
@@ -11958,7 +11971,7 @@ _vue.default.component('g-collapse-item', _collapseItem.default);
 new _vue.default({
   el: '#app',
   data: {
-    selectedTab: 'sports'
+    selectedTab: ['2', '1']
   },
   created: function created() {},
   methods: {
@@ -12011,7 +12024,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56703" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61891" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
