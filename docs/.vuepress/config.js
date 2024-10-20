@@ -1,4 +1,5 @@
 module.exports = {
+    base: '/gulu-demo/',
     title: '轱辘 UI',
     description: '一个简单实用的 UI 框架',
     themeConfig: {
