@@ -1,4 +1,4 @@
-# 轱辘 - 一个 Vue UI 组件
+# sleet - 一个 Vue2 UI 组件
 
 ## 介绍
 
