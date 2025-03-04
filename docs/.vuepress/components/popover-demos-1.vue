@@ -1,7 +1,7 @@
 <template>
     <div>
       <g-popover>
-        <g-button>上方弹出</g-button><br>
+        <g-button>上方弹出</g-button>
         <template slot="content">
           弹出内容
         </template>
