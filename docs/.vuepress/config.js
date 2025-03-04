@@ -1,4 +1,5 @@
 module.exports = {
+    base:'/sleetUI/',
     title: ' sleetUI',
     description: '一个简单实用的 UI 框架',
     themeConfig: {
