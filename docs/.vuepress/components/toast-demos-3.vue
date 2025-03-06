@@ -29,23 +29,23 @@ export default {
   <g-button @click="onClickButton">上方弹出</g-button>
 </div>
   methods: {
-        showToast2() {
-            this.showToast('middle');
+    showToast2() {
+        this.showToast('middle');
         },
-        showToast(position) {
-            this.$toast('你知道我在想你吗？', {
-                position,
-                enableHtml: false,
-                closeButton: {
-                    text: '知道了',
-                    callback() {
-                        console.log('他说知道了')
-                    }
-                },
-                autoClose: 2,
-            })
-        }
-    }`.trim()
+    showToast(position) {
+        this.$toast('你知道我在想你吗？', {
+            position,
+            enableHtml: false,
+            closeButton: {
+            text: '知道了',
+                callback() {
+                    console.log('他说知道了')
+                }
+            },
+            autoClose: 2,
+        })
+    }
+}`.trim()
         }
     },
     methods: {

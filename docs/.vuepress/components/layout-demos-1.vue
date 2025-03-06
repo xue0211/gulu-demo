@@ -27,17 +27,18 @@
     },
     data(){
       return{
-        content: `<g-layout style="color: white; margin-bottom:50px;">
-    <g-header style="height: 50px; background:lightskyblue;">
+        content: `
+<g-layout style="color: white; margin-bottom:50px;">
+  <g-header style="height: 50px; background:lightskyblue;">
       header
-    </g-header>
-    <g-content style="height: 100px; background:deepskyblue;">
+  </g-header>
+  <g-content style="height: 100px; background:deepskyblue;">
       content
-    </g-content>
-    <g-footer style="height: 50px; background:lightskyblue;">
+  </g-content>
+  <g-footer style="height: 50px; background:lightskyblue;">
       footer
-    </g-footer>
-  </g-layout>`.trim()
+  </g-footer>
+</g-layout>`.trim()
       }
     }
   }
